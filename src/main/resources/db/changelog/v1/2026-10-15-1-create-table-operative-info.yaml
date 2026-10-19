@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-10-15-1-create-table-operative-info
+      author: me
+      changes:
+        - createTable:
+            tableName: operative_info
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: content_html
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: author_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - createIndex:
+            indexName: idx_operative_info_created_id
+            tableName: operative_info
+            columns:
+              - column:
+                  name: created_at
+                  descending: true
+              - column:
+                  name: id
+                  descending: true

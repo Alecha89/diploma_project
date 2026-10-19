@@ -1,0 +1,131 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-16-01-1-insert-test-data
+      author: me
+      changes:
+        - insert:
+            tableName: operative_info
+            columns:
+              - column:
+                  name: id
+                  value: "01a13faa-0571-77fe-933e-ac2544e4eb25"
+              - column:
+                  name: title
+                  value: "Плановые технические работы 17 октября"
+              - column:
+                  name: content_html
+                  value: "<p>Уважаемые пользователи, 17.10.2026 с 02:00 до 04:00 будут проводиться работы на сервере</p>"
+              - column:
+                  name: author_name
+                  value: "admin"
+              - column:
+                  name: created_at
+                  value: "2026-10-16T10:00:00Z"
+  - changeSet:
+      id: 2026-16-01-2-insert-test-data
+      author: me
+      changes:
+        - insert:
+            tableName: qa_topic
+            columns:
+              - column:
+                  name: id
+                  value: "01a13fab-9b4d-75cd-aced-628ffbb74d08"
+              - column:
+                  name: label
+                  value: "Общие вопросы по работе департамента"
+              - column:
+                  name: sort_order
+                  value: "1"
+              - column:
+                  name: is_active
+                  valueBoolean: true
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+              - column:
+                  name: created_at
+                  value: "2026-10-15T11:00:00Z"
+        - insert:
+            tableName: qa_topic
+            columns:
+              - column:
+                  name: id
+                  value: "01a13fac-59b7-74a9-8aae-1f967a2998f0"
+              - column:
+                  name: label
+                  value: "Кредитование"
+              - column:
+                  name: sort_order
+                  value: "2"
+              - column:
+                  name: is_active
+                  valueBoolean: true
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+              - column:
+                  name: created_at
+                  value: "2026-10-15T11:05:00Z"
+        - insert:
+            tableName: qa_question
+            columns:
+              - column:
+                  name: id
+                  value: "01a13fae-02eb-725d-a5e0-0de9b818c91b"
+              - column:
+                  name: topic_id
+                  value: "01a13fac-59b7-74a9-8aae-1f967a2998f0"
+              - column:
+                  name: author_name
+                  value: "user"
+              - column:
+                  name: question_text
+                  value: "Как получить кредит на недвижимость?"
+              - column:
+                  name: answer_text
+                  value: "Получить кредит на недвижимость легко, посетив отделение банка"
+              - column:
+                  name: status
+                  value: "ANSWERED"
+              - column:
+                  name: created_at
+                  value: "2026-10-15T12:00:00Z"
+              - column:
+                  name: answered_at
+                  value: "2026-10-15T12:15:00Z"
+              - column:
+                  name: answered_by_name
+                  value: "admin"
+        - insert:
+            tableName: qa_question
+            columns:
+              - column:
+                  name: id
+                  value: "01a13fb2-b67d-77c3-a6e4-608f59ce0fd9"
+              - column:
+                  name: topic_id
+                  value: "01a13fab-9b4d-75cd-aced-628ffbb74d08"
+              - column:
+                  name: author_name
+                  value: "user"
+              - column:
+                  name: question_text
+                  value: "Хочу у вас работать. Что можно сделать?"
+              - column:
+                  name: answer_text
+                  value: null
+              - column:
+                  name: status
+                  value: "PENDING"
+              - column:
+                  name: created_at
+                  value: "2026-10-15T13:45:00Z"
+              - column:
+                  name: answered_at
+                  value: null
+              - column:
+                  name: answered_by_name
+                  value: null
+
+

@@ -1,0 +1,129 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-10-15-2-create-qa-tables
+      author: me
+      changes:
+        - createTable:
+            tableName: qa_topic
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: label
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sort_order
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_active
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_deleted
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMPTZ
+              - column:
+                  name: deleted_by
+                  type: VARCHAR(10)
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMPTZ
+
+        - createTable:
+            tableName: qa_question
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: topic_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_question_topic
+                    referencedTableName: qa_topic
+                    referencedColumnNames: id
+                    deleteCascade: false
+              - column:
+                  name: author_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: question_text
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: answer_text
+                  type: TEXT
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+                  constraints:
+                    nullable: false
+              - column:
+                  name: answered_at
+                  type: TIMESTAMPTZ
+              - column:
+                  name: answered_by_name
+                  type: VARCHAR(255)
+
+        - createIndex:
+            indexName: idx_qa_topic_sort_active
+            tableName: qa_topic
+            columns:
+              - column:
+                  name: is_active
+              - column:
+                  name: sort_order
+                  descending: false
+
+        - createIndex:
+            indexName: idx_qa_question_status_topic_created
+            tableName: qa_question
+            columns:
+              - column:
+                  name: status
+              - column:
+                  name: topic_id
+              - column:
+                  name: created_at
+                  descending: true
+
+        - createIndex:
+            indexName: idx_qa_question_author
+            tableName: qa_question
+            columns:
+              - column:
+                  name: author_name
+              - column:
+                  name: created_at
+                  descending: true

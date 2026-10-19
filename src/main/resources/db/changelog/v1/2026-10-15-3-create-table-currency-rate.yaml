@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-10-15-3-create-table-currency-rate
+      author: me
+      changes:
+        - createTable:
+            tableName: currency_rate
+            columns:
+              - column:
+                  name: abbreviation
+                  type: VARCHAR(5)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: scale
+                  type: INTEGER
+              - column:
+                  name: rate
+                  type: DECIMAL(18, 4)
+              - column:
+                  name: updated_at
+                  type: TIMESTAMPTZ
